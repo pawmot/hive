@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+    }
+}
+
+group 'com.pawmot.net.hive'
+version '0.1-SNAPSHOT'
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+    mavenCentral()
+}
+
+dependencyManagement {
+    dependencies {
+        dependency "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+        dependency "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+        dependency "io.netty:netty-all:$netty_version"
+    }
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    compile 'org.jetbrains.kotlin:kotlin-reflect'
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'io.netty:netty-all'
+    compile 'ch.qos.logback:logback-classic'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.3.1"
+}

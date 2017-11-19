@@ -1,0 +1,4 @@
+hive:
+  tcpPort: 8080
+  udpPort: 8080
+  address: 0.0.0.0
